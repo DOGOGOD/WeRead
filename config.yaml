@@ -1,0 +1,43 @@
+# WeRead - 微信公众号文章爬取与AI摘要配置
+# ===============================================
+
+# 目标公众号配置 - 通过文章链接订阅
+# 链接示例: https://mp.weixin.qq.com/s/xxxxx
+subscriptions:
+  # - name: "公众号名称"
+  #   url: "https://mp.weixin.qq.com/s/xxxxx"    # 该公众号任意一篇文章链接
+  #   keywords:                                    # 粗筛关键词（可选，为空则全部保留）
+  #     - "关键词1"
+  #     - "关键词2"
+  #   interest: "自然语言描述关注点，AI总结时会以此为准判断相关性并提取重点"
+
+# 浏览器配置
+browser:
+  # 浏览器类型，默认 webkit（Docker 环境下推荐）
+  type: webkit
+  # 是否无头模式（Docker 下必须为 true）
+  headless: true
+
+# 微信公众平台认证信息（需要登录一次获取token/cookie）
+wechat:
+  # 登录方式: qrcode (扫码登录)
+  auth_method: qrcode
+  # token 和 cookie 会自动保存到 data/token.json，无需手动填写
+
+# 调度配置
+schedule:
+  # 定时任务 cron 表达式 (默认每天 10:00, 14:00, 18:00, 22:00)
+  cron_expressions:
+    - "0 10 * * *"
+    - "0 14 * * *"
+    - "0 18 * * *"
+    - "0 22 * * *"
+  # 每次爬取的文章页数（每页约5篇）
+  max_pages: 2
+  # 请求间隔（秒），避免被限流
+  request_interval: 10
+
+# 输出配置
+output:
+  # 文章和图片保存目录（每篇文章一个子目录）
+  blog_dir: "./Blog"

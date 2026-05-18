@@ -1,0 +1,21 @@
+# WeRead 依赖
+# =================
+
+# 核心
+PyYAML>=6.0
+requests>=2.28
+aiohttp>=3.8
+
+# 浏览器自动化 - 文章内容抓取
+playwright>=1.40
+beautifulsoup4>=4.12
+lxml>=5.0
+
+# 任务调度
+APScheduler>=3.10
+
+# 数据验证
+pydantic>=2.0
+
+# 异步支持
+anyio>=4.0
